@@ -1,6 +1,5 @@
 # PRiSM  
-
-![PRiSM Logo](./PRiSM_Logo_D.jpg)  
+  
 
 ## Overview  
 **PRiSM** is an AI-powered engineering design studio built with **Next.js, TypeScript, and TailwindCSS**.  
