@@ -2,101 +2,105 @@ PRiSM
 
 Overview
 
-PRiSM is a Next.js + TypeScript platform designed to transform natural language project specifications into structured engineering artifacts.
-The system provides an end-to-end workflow similar to Flux.ai, with modular panels for circuits, CAD, CFD, generated code, BOM, risk analysis, testing, and documentation.
+PRiSM is an AI-powered engineering design studio built with Next.js, TypeScript, and TailwindCSS.
+It enables engineers to describe projects in natural language and automatically generate structured specifications, circuit diagrams, CAD mockups, simulation placeholders, BOMs, and exportable documentation.
 
-The project emphasizes modular architecture, AI-powered prompt integration, and deterministic simulation workflows with mock fallbacks for demonstration.
+The system is designed with modular architecture, clean UI/UX, and extensibility in mind. It currently integrates OpenAI NLP with stubs for CAD and simulation APIs, and includes deterministic mock data pipelines for demonstration.
 
-Features Implemented So Far
+Features
 Project Management
 
-Landing page with grid layout for project cards.
+Grid-based landing page with project creation and persistence.
 
-Project creation with name persistence and routing to /project/[id].
+Dynamic routing to /project/[id] workspaces.
 
-Sidebar navigation for all engineering tools.
+Sidebar navigation for all engineering modules.
 
-Command Prompt (AI-Driven)
+Command Prompt (AI Integration)
 
-Integrated with OpenAI GPT using OPENAI_API_KEY.
+Integrated with OpenAI GPT via OPENAI_API_KEY.
 
-Converts free-text inputs into structured specifications.
+Converts free-text project descriptions into structured specifications.
 
-Supports recompute on variable changes with debounce.
+Debounced recompute flow updates all sections when variables change.
 
 Circuits
 
-Keyword-based image rendering (e.g., ESP32, Raspberry Pi, Arduino).
+Keyword detection in prompts (e.g., Arduino, Raspberry Pi, ESP32) displays mapped circuit diagrams.
 
-Random fallback circuit images when no keyword is found.
+Random fallback images when no keyword match is found.
 
-Future-ready Wokwi mapping (diagram.json, sketch.ino, wokwi.toml).
+Placeholder mapping to Wokwi JSON format (diagram.json, sketch.ino, wokwi.toml).
 
-CAD
+CAD Models
 
-Stubs for Zoo API integration.
+Stubbed Zoo API integration for 3D model generation.
 
-Pool of 6–7 mock CAD models returned randomly for demo purposes.
+Backend contains a pool of 6–7 mock CAD files (STEP/GLB/OBJ).
 
-Export-ready file formats: STEP/GLB/OBJ.
+Download buttons available for export-ready files.
 
-CFD / Simulations
+CFD / Simulation
 
-Stubs for SimScale API with mock JSON responses.
+Stubbed SimScale API integration for stress, strain, and thermal data.
 
-Returns deterministic metrics such as stress, strain, and temperature.
+Deterministic JSON results provide structured metrics.
 
-Embeds placeholder images for results.
+Visual placeholders embedded into the Simulation section.
 
 Generated Code
 
-Code viewer with syntax highlighting and export options.
+Syntax-highlighted code viewer with copy and download support.
 
-Stubbed API routes for generating multi-language code files.
+Backend stubs for multiple languages (C, C++, Python, Rust).
+
+Mock files delivered based on parsed project spec.
 
 Bill of Materials (BOM)
 
-Fixed implementation: working table with searchable/sortable fields.
+Fully functional searchable and sortable BOM table.
 
-Columns: MPN, Description, Qty, Unit Price, Supplier.
+Fields: MPN, Description, Qty, Unit Price, Supplier, Alternatives.
 
-CSV export supported.
+Includes total calculation and CSV export.
 
 Risk Analysis & Testing Methods
 
-Mock risk items with severity ratings (L/M/H) and mitigations.
+Risk analysis cards with severity indicators and mitigations.
 
-Testing cards describing procedures and required equipment.
+Testing procedures with steps, required equipment, and notes.
 
-User Manual & PDF Export
+User Manual & Documentation
 
-Aggregates outputs from Circuits and CAD panels.
+Compiles outputs from Circuits and CAD into a structured manual.
 
-Generates a clean PDF export with images and documentation.
+PDF export functionality creates a ready-to-share report.
+
+Clean layout with headings, warnings, and tools list.
 
 Technical Stack
 
-Framework: Next.js (App Router), TypeScript
+Framework: Next.js (App Router) + TypeScript
 
-UI: TailwindCSS, shadcn/ui, lucide-react, framer-motion
+UI: TailwindCSS, shadcn/ui, framer-motion, lucide-react
 
-AI:
+AI Integration:
 
-OpenAI GPT (prompt → specification)
+OpenAI GPT (OPENAI_API_KEY) for NLP-driven specification parsing
 
-Zoo API (CAD stubs)
+Zoo API stubs for CAD generation
 
-SimScale API (simulation stubs)
+SimScale API stubs for simulation results
 
 Backend: Next.js API routes, Node runtime
 
-Persistence: File storage / SQLite with mocks
+Persistence: File-based mocks with environment-configurable ARTIFACT_ROOT
 
-Artifacts: Wokwi CLI planned for live circuit simulation
+Artifacts: Wokwi CLI planned for circuit simulation integration
 
 Environment Variables
 
-Create a .env.local file with the following keys:
+Create a .env.local file with the following:
 
 OPENAI_API_KEY=sk-...
 OPENAI_MODEL=gpt-4o-mini
@@ -108,22 +112,30 @@ ARTIFACT_ROOT=/tmp/projects
 
 Current Status
 
-Core workspace (projects, prompts, sidebar) functional.
+Project management, AI prompt panel, Circuits, CAD, BOM, Risk, Testing, and User Manual are functional.
 
-Circuits and CAD return deterministic mock data mapped from user prompts.
+CSV export (BOM) and PDF export (User Manual) fully working.
 
-BOM, Risk, Testing, and User Manual sections are fully operational.
+Circuits and CAD sections pull deterministic mock data.
 
-CSV and PDF exports verified.
+Backend prepared for real API integration (Zoo, SimScale, Wokwi).
 
-Pending: Wokwi simulation integration, real Zoo + SimScale API connections, and expanded code generation.
+Roadmap
 
-Next Steps
+Finalize Wokwi CLI integration for live Arduino simulation.
 
-Connect live Zoo and SimScale APIs.
+Connect Zoo API for real CAD generation.
 
-Finalize Wokwi CLI integration for Arduino simulation.
+Enable SimScale API for real-time simulations.
 
-Expand generated code coverage (Python, C++, Rust).
+Expand code generation pipeline with more languages and richer test coverage.
 
-Add authentication and multi-user support.
+Add authentication and multi-user project support.
+
+Contribution
+
+Contributions are welcome. The system is modular, and new APIs or exporters can be integrated by extending the backend /api routes and updating the workspace panels.
+
+License
+
+This project is released under the MIT License.
