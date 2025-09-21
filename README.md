@@ -1,72 +1,129 @@
-<<<<<<< HEAD
-# PRiSM
-=======
-# Shadcn-UI Template Usage Instructions
+PRiSM
 
-## technology stack
+Overview
 
-This project is built with:
+PRiSM is a Next.js + TypeScript platform designed to transform natural language project specifications into structured engineering artifacts.
+The system provides an end-to-end workflow similar to Flux.ai, with modular panels for circuits, CAD, CFD, generated code, BOM, risk analysis, testing, and documentation.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The project emphasizes modular architecture, AI-powered prompt integration, and deterministic simulation workflows with mock fallbacks for demonstration.
 
-All shadcn/ui components have been downloaded under `@/components/ui`.
+Features Implemented So Far
+Project Management
 
-## File Structure
+Landing page with grid layout for project cards.
 
-- `index.html` - HTML entry point
-- `vite.config.ts` - Vite configuration file
-- `tailwind.config.js` - Tailwind CSS configuration file
-- `package.json` - NPM dependencies and scripts
-- `src/app.tsx` - Root component of the project
-- `src/main.tsx` - Project entry point
-- `src/index.css` - Existing CSS configuration
-- `src/pages/Index.tsx` - Home page logic
+Project creation with name persistence and routing to /project/[id].
 
-## Components
+Sidebar navigation for all engineering tools.
 
-- All shadcn/ui components are pre-downloaded and available at `@/components/ui`
+Command Prompt (AI-Driven)
 
-## Styling
+Integrated with OpenAI GPT using OPENAI_API_KEY.
 
-- Add global styles to `src/index.css` or create new CSS files as needed
-- Use Tailwind classes for styling components
+Converts free-text inputs into structured specifications.
 
-## Development
+Supports recompute on variable changes with debounce.
 
-- Import components from `@/components/ui` in your React components
-- Customize the UI by modifying the Tailwind configuration
+Circuits
 
-## Note
+Keyword-based image rendering (e.g., ESP32, Raspberry Pi, Arduino).
 
-- The `@/` path alias points to the `src/` directory
-- In your typescript code, don't re-export types that you're already importing
+Random fallback circuit images when no keyword is found.
 
-# Commands
+Future-ready Wokwi mapping (diagram.json, sketch.ino, wokwi.toml).
 
-**Install Dependencies**
+CAD
 
-```shell
-pnpm i
-```
+Stubs for Zoo API integration.
 
-**Add Dependencies**
+Pool of 6–7 mock CAD models returned randomly for demo purposes.
 
-```shell
-pnpm add some_new_dependency
+Export-ready file formats: STEP/GLB/OBJ.
 
-**Start Preview**
+CFD / Simulations
 
-```shell
-pnpm run dev
-```
+Stubs for SimScale API with mock JSON responses.
 
-**To build**
+Returns deterministic metrics such as stress, strain, and temperature.
 
-```shell
-pnpm run build
-```
->>>>>>> ac3320e (Final Commit: Prism Project)
+Embeds placeholder images for results.
+
+Generated Code
+
+Code viewer with syntax highlighting and export options.
+
+Stubbed API routes for generating multi-language code files.
+
+Bill of Materials (BOM)
+
+Fixed implementation: working table with searchable/sortable fields.
+
+Columns: MPN, Description, Qty, Unit Price, Supplier.
+
+CSV export supported.
+
+Risk Analysis & Testing Methods
+
+Mock risk items with severity ratings (L/M/H) and mitigations.
+
+Testing cards describing procedures and required equipment.
+
+User Manual & PDF Export
+
+Aggregates outputs from Circuits and CAD panels.
+
+Generates a clean PDF export with images and documentation.
+
+Technical Stack
+
+Framework: Next.js (App Router), TypeScript
+
+UI: TailwindCSS, shadcn/ui, lucide-react, framer-motion
+
+AI:
+
+OpenAI GPT (prompt → specification)
+
+Zoo API (CAD stubs)
+
+SimScale API (simulation stubs)
+
+Backend: Next.js API routes, Node runtime
+
+Persistence: File storage / SQLite with mocks
+
+Artifacts: Wokwi CLI planned for live circuit simulation
+
+Environment Variables
+
+Create a .env.local file with the following keys:
+
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4o-mini
+
+ZOO_API_KEY=...
+SIMSCALE_API_KEY=...
+
+ARTIFACT_ROOT=/tmp/projects
+
+Current Status
+
+Core workspace (projects, prompts, sidebar) functional.
+
+Circuits and CAD return deterministic mock data mapped from user prompts.
+
+BOM, Risk, Testing, and User Manual sections are fully operational.
+
+CSV and PDF exports verified.
+
+Pending: Wokwi simulation integration, real Zoo + SimScale API connections, and expanded code generation.
+
+Next Steps
+
+Connect live Zoo and SimScale APIs.
+
+Finalize Wokwi CLI integration for Arduino simulation.
+
+Expand generated code coverage (Python, C++, Rust).
+
+Add authentication and multi-user support.
